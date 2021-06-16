@@ -7,13 +7,12 @@ import (
 	"github.com/prometheus/client_golang/prometheus"
 )
 
-const namespace = "version"
-
 type versionCollector struct {
 	currentVersion *prometheus.Desc
 	latestVersion  *prometheus.Desc
 }
 
+// JSON展開用
 type Version struct {
 	Current string `json:"current"`
 	Latest  string `json:"latest"`
@@ -33,7 +32,7 @@ func (vc *versionCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (vc *versionCollector) Collect(ch chan<- prometheus.Metric) {
 	api := newAPI()
-	body := fetch(&api, namespace)
+	body := fetch(&api, "version")
 	var version Version
 	if err := json.Unmarshal(body, &version); err != nil {
 		log.Fatal(err)
