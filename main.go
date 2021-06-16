@@ -8,5 +8,7 @@ import (
 
 func main() {
 	status := collector.NewStatusCollector()
+	version := collector.NewVersionCollector()
 	fmt.Println(status)
+	fmt.Println(version)
 }

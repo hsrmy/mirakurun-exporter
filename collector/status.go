@@ -6,7 +6,6 @@ import (
 )
 
 type Status struct {
-	Version string `json:"version"`
 	Process struct {
 		Arch     string `json:"arch"`
 		Platform string `json:"platform"`
