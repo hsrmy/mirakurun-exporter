@@ -18,11 +18,11 @@ var (
 func main() {
 	flag.Parse()
 
-	// s := collector.NewStatusCollector()
+	s := collector.NewStatusCollector()
 	v := collector.NewVersionCollector()
 
 	reg := prometheus.NewRegistry()
-	reg.MustRegister(v)
+	reg.MustRegister(s, v)
 
 	http.HandleFunc("/", indexPage)
 	http.Handle("/metrics", promhttp.HandlerFor(reg, promhttp.HandlerOpts{}))
