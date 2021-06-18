@@ -21,7 +21,7 @@ type Version struct {
 func NewVersionCollector() *versionCollector {
 	return &versionCollector{
 		currentVersion: prometheus.NewDesc(
-			"mirukurun_verison_current_version",
+			"mirakurun_verison_current_version",
 			"Current Version of mirakurun.",
 			[]string{"host", "version"},
 			nil),

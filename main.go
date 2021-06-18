@@ -41,7 +41,7 @@ func indexPage(w http.ResponseWriter, r *http.Request) {
 			<title>Mirakurun Exporter</title>
 		</head>
 		<body>
-			<h1>Mirukurn Exporter</h1>
+			<h1>Mirakurn Exporter</h1>
 			<p><a href="/metrics">Metrics</a></p>
 		</body>
 		</html>
