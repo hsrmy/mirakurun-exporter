@@ -481,7 +481,7 @@ func (sc *statusCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (sc *statusCollector) Collect(ch chan<- prometheus.Metric) {
 	api := newAPI()
-	body := fetch(&api, "status")
+	body := fetch(&api, "status", &Query{})
 
 	var status Status
 	if err := json.Unmarshal(body, &status); err != nil {

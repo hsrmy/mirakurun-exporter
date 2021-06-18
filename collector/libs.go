@@ -13,6 +13,9 @@ type ApiInfo struct {
 	Port   string
 	Schema string
 }
+type Query struct {
+	Query *string
+}
 
 func newAPI() ApiInfo {
 	apiInfo := new(ApiInfo)
@@ -45,9 +48,12 @@ func getApiRoot(apiInfo *ApiInfo) string {
 	return fmt.Sprintf("%s://%s:%s/api/", apiInfo.Schema, apiInfo.Host, apiInfo.Port)
 }
 
-func fetch(apiInfo *ApiInfo, namespace string) []byte {
-	var root = getApiRoot(apiInfo)
-	var url = fmt.Sprintf("%s%s", root, namespace)
+func fetch(apiInfo *ApiInfo, namespace string, query *Query) []byte {
+	root := getApiRoot(apiInfo)
+	url := fmt.Sprintf("%s%s", root, namespace)
+	if query.Query != nil {
+		url = fmt.Sprintf("%s?%s", url, *query.Query)
+	}
 
 	// APIを叩く
 	res, err := http.Get(url)

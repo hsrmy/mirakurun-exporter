@@ -40,7 +40,7 @@ func (vc *versionCollector) Describe(ch chan<- *prometheus.Desc) {
 
 func (vc *versionCollector) Collect(ch chan<- prometheus.Metric) {
 	api := newAPI()
-	body := fetch(&api, "version")
+	body := fetch(&api, "version", &Query{})
 	var version Version
 	if err := json.Unmarshal(body, &version); err != nil {
 		log.Fatal(err)
